@@ -65,9 +65,9 @@ public class NZTides extends Activity {
    	};
 */
 
-	private String[] portlist = {"anawhata", "auckland", "ben gunn", "bluff", "castlepoint", "deep cove", "dunedin", "fishing rock", "flour cask bay", "french bay", "fresh water basin", "gisborne", "green island", "havelock", "huruhi harbour", "jackson bay", "kaikoura", "kaingaroa", "kaiteriteri", "kaituna river", "kawhia", "korotiti bay", "leigh", "lottin point", "lyttelton", "mana", "mano war bay", "mapua", "marsden point", "matiatia bay", "napier", "nelson", "north cape", "oamaru", "oban", "omokoroa", "onehunga", "opotiki wharf", "opua", "owenga", "paratutae island", "picton", "port chalmers", "port ophoe wharf", "port taranaki", "pouto point", "preservation inlet", "raglan", "rocky point", "scott base", "spit wharf", "sumner", "tarakohe", "tauranga", "timaru", "waiorua bay", "waitangi (chatham is)", "wanganui", "wellington", "westport", "whakatane", "whangarei", "whangaroa", "whitianga"};
+	private String[] portlist = {"anawhata", "auckland", "ben gunn", "bluff", "castlepoint", "deep cove", "dunedin", "fishing rock", "flour cask bay", "french bay", "fresh water basin", "gisborne", "green island", "havelock", "huruhi harbour", "jackson bay", "kaikoura", "kaingaroa", "kaiteriteri", "kaituna river", "kawhia", "korotiti bay", "leigh", "lottin point", "lyttelton", "mana", "mano war bay", "mapua", "marsden point", "matiatia bay", "napier", "nelson", "north cape", "oamaru", "oban", "omokoroa", "onehunga", "opotiki wharf", "opua", "owenga", "paratutae island", "picton", "port chalmers", "port ohope wharf", "port taranaki", "pouto point", "preservation inlet", "raglan", "rocky point", "scott base", "spit wharf", "sumner", "tarakohe", "tauranga", "timaru", "waiorua bay", "waitangi (chatham is)", "whanganui", "wellington", "westport", "whakatane", "whangarei", "whangaroa", "whitianga"};
 
-    private String[] portdisplaynames = {"Anawhata", "Auckland", "Ben Gunn", "Bluff", "Castlepoint", "Deep Cove", "Dunedin", "Fishing Rock", "Flour Cask Bay", "French Bay", "Fresh Water Basin", "Gisborne", "Green Island", "Havelock", "Huruhi Harbour", "Jackson Bay", "Kaikoura", "Kaingaroa", "Kaiteriteri", "Kaituna River", "Kawhia", "Korotiti Bay", "Leigh", "Lottin Point", "Lyttelton", "Mana", "Man o\'War Bay", "Mapua", "Marsden Point", "Matiatia Bay", "Napier", "Nelson", "North Cape", "Oamaru", "Oban", "Omokoroa", "Onehunga", "Opotiki Wharf", "Opua", "Owenga", "Paratutae Island", "Picton", "Port Chalmers", "Port Ohope Wharf", "Port Taranaki", "Pouto Point", "Preservation Inlet", "Raglan", "Rocky Point", "Scott Base", "Spit Wharf", "Sumner", "Tarakohe", "Tauranga", "Timaru", "Waiorua Bay", "Waitangi (Chatham Is)", "Wanganui", "Wellington", "Westport", "Whakatane", "Whangarei", "Whangaroa", "Whitianga"};
+    private String[] portdisplaynames = {"Anawhata", "Auckland", "Ben Gunn", "Bluff", "Castlepoint", "Deep Cove", "Dunedin", "Fishing Rock", "Flour Cask Bay", "French Bay", "Fresh Water Basin", "Gisborne", "Green Island", "Havelock", "Huruhi Harbour", "Jackson Bay", "Kaikoura", "Kaingaroa", "Kaiteriteri", "Kaituna River", "Kawhia", "Korotiti Bay", "Leigh", "Lottin Point", "Lyttelton", "Mana", "Man o\'War Bay", "Mapua", "Marsden Point", "Matiatia Bay", "Napier", "Nelson", "North Cape", "Oamaru", "Oban", "Omokoroa", "Onehunga", "Opotiki Wharf", "Opua", "Owenga", "Paratutae Island", "Picton", "Port Chalmers", "Port Ohope Wharf", "Port Taranaki", "Pouto Point", "Preservation Inlet", "Raglan", "Rocky Point", "Scott Base", "Spit Wharf", "Sumner", "Tarakohe", "Tauranga", "Timaru", "Waiorua Bay", "Waitangi (Chatham Is)", "Whanganui", "Wellington", "Westport", "Whakatane", "Whangarei", "Whangaroa", "Whitianga"};
 
 	public static int swap (int value)
 	{
@@ -93,7 +93,7 @@ public class NZTides extends Activity {
 		int nowsecs = (int)(now.getTime()/1000);
 		int lasttide;
 		char [][] graph = new char[num_rows][num_cols+1];
-		
+
 
 		
 		
@@ -165,7 +165,9 @@ public class NZTides extends Activity {
 	        
 	        double currentht = amp*Math.cos(omega*(nowsecs-told))+mn;
 	        double riserate =  -amp*omega*Math.sin(omega*(nowsecs-told))*60*60;
-	            
+
+
+
 	        //Start populating outstring
 	        outstring.append(stationname.trim() + " " + nformat4.format(currentht) +"m");
 	        //display up arrow or down arrow depending on weather tide is rising or falling
@@ -227,7 +229,7 @@ public class NZTides extends Activity {
        	 	hightidenext = !hightidenext;
 	        outstring.append(nformat1.format(h)+(hightidenext?" H ":" L ")+dformat.format(new Date(1000*(long)t))+'\n');
 	            
-	            for(int k=0;k<30*4;k++){
+	            for(int k=0;k<35*4;k++){
 	            	 hightidenext = !hightidenext;
 	            	  t = swap(tidedat.readInt());
 	                  h = (float) (tidedat.readByte())/(float)(10.0);
@@ -237,11 +239,9 @@ public class NZTides extends Activity {
 	            outstring.append(dformat.format(new Date(1000*(long)lasttide)));
 	            
 	        }catch (IOException e) {
-	        	outstring.append("Problem with IO: " + e.getMessage() + "\nThis is probably because tide data is old, try looking for an update.");
+	        	outstring.append("Problem reading tide data\nThis is probably because tide data is out of date, try looking for an update.");
 	        }
-	        
-	        return outstring.toString();	
-		
+	        return outstring.toString();
 	}
 	
     /** Called when the activity is first created. */
